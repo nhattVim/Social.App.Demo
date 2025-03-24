@@ -12,7 +12,13 @@
   "dependencies": {
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.0",
+<<<<<<< HEAD
+<<<<<<< HEAD
     "@fontsource/roboto": "^5.2.5",
+=======
+>>>>>>> 3e8f5d0 (complete layout center)
+=======
+>>>>>>> f55fee7 (Add Header)
     "@mui/icons-material": "^6.4.8",
     "@mui/material": "^6.4.8",
     "react": "^19.0.0",
