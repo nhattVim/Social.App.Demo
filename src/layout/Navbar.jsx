@@ -26,11 +26,11 @@ const Navbar = () => {
   };
 
   return (
-    <AppBar position="absolute" sx={{ bgcolor: '#111', minHeight: 64 }}>
+    <AppBar position="fixed" sx={{ bgcolor: '#16181c', minHeight: 60 }}>
       <Toolbar sx={{ justifyContent: 'space-between' }}>
         {/* Logo Section */}
-        <IconButton edge="start" color="inherit" aria-label="logo" sx={{ mr: 2 }}>
-          <BoltIcon sx={{ color: '#4caf50', fontSize: 28 }} />
+        <IconButton  edge="start" color="inherit" aria-label="logo" sx={{ mr: 2 }}>
+          <BoltIcon sx={{ color: '#6ec207', fontSize: 30 }} />
         </IconButton>
 
         {/* Navigation Tabs Section */}
@@ -39,16 +39,21 @@ const Navbar = () => {
           onChange={handleTabChange}
           sx={{
             '& .MuiTabs-indicator': {
-              backgroundColor: '#4caf50',
-              height: 3
-            }
+              backgroundColor: '#6ec207',
+              height: 3,
+              borderRadius: "4px"
+            },
+            maxWidth: "100%",
+            marginLeft: "auto",
+            marginRight: "auto",
+            paddingLeft: "100px"
           }}
         >
           <Tab
             icon={<HomeIcon />}
             sx={{
               color: activeTab === 0 ? '#fff' : '#aaa',
-              '&.Mui-selected': { color: '#fff' },
+              '&.Mui-selected': { color: '#6ec207' },
               minWidth: 100
             }}
           />
@@ -56,7 +61,7 @@ const Navbar = () => {
             icon={<PersonIcon />}
             sx={{
               color: activeTab === 1 ? '#fff' : '#aaa',
-              '&.Mui-selected': { color: '#fff' },
+              '&.Mui-selected': { color: '#6ec207' },
               minWidth: 100
             }}
           />
@@ -64,7 +69,7 @@ const Navbar = () => {
             icon={<EmailIcon />}
             sx={{
               color: activeTab === 2 ? '#fff' : '#aaa',
-              '&.Mui-selected': { color: '#fff' },
+              '&.Mui-selected': { color: '#6ec207' },
               minWidth: 100
             }}
           />
@@ -72,7 +77,7 @@ const Navbar = () => {
             icon={<NotificationsIcon />}
             sx={{
               color: activeTab === 2 ? '#fff' : '#aaa',
-              '&.Mui-selected': { color: '#fff' },
+              '&.Mui-selected': { color: '#6ec207' },
               minWidth: 100
             }}
           />
