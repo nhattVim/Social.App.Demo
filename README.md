@@ -13,3 +13,9 @@ yarn dev
 npm i
 npm run dev
 ```
+
+# Screenshot
+
+![](public/1.png)
+
+![](public/2.png)
