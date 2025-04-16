@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Box,
   Typography,
@@ -13,41 +13,28 @@ import {
 } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 
+const contacts = [
+  { name: "John Doe", username: "@johndoe", avatar: "https://mui.com/static/images/avatar/1.jpg" },
+  { name: "Jane Smith", username: "@janesmith", avatar: "https://mui.com/static/images/avatar/2.jpg" },
+  { name: "Mike Johnson", username: "@mikejohnson", avatar: "https://mui.com/static/images/avatar/3.jpg" },
+  { name: "Emily Davis", username: "@emilydavis", avatar: "https://mui.com/static/images/avatar/4.jpg" },
+];
+
 function Sidebar() {
-  const contacts = [
-    {
-      name: "Diogo Forlan",
-      username: "@forlan77",
-      avatar: "https://via.placeholder.com/40",
-    },
-    {
-      name: "Jane Smith",
-      username: "@jane123",
-      avatar: "https://via.placeholder.com/40",
-    },
-    {
-      name: "John Doe2",
-      username: "@john_doe",
-      avatar: "https://via.placeholder.com/40",
-    },
-    {
-      name: "John Doe3",
-      username: "@john_doe",
-      avatar: "https://via.placeholder.com/40",
-    },
-    {
-      name: "John Doe4",
-      username: "@john_doe",
-      avatar: "https://via.placeholder.com/40",
-    },
-  ];
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const filteredContacts = contacts.filter(
+    (contact) =>
+      contact.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      contact.username.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
   return (
     <>
       <Box
         sx={{
           position: "fixed",
-          width: "360px"
+          width: "360px",
         }}
       >
         {/* Thanh tìm kiếm */}
@@ -55,22 +42,27 @@ function Sidebar() {
           placeholder="Tìm kiếm"
           variant="outlined"
           fullWidth
-          InputProps={{
-            startAdornment: (
-              <InputAdornment position="start">
-                <SearchIcon sx={{color: "#808080"}}/>
-              </InputAdornment>
-            ),
-            style: {
-              color: "#f5f5f5",
-              backgroundColor: "#16181c",
-              borderRadius: "25px",
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          slotProps={{
+            input: {
+              startAdornment: (
+                <InputAdornment position="start">
+                  <SearchIcon sx={{ color: "#808080" }} />
+                </InputAdornment>
+              ),
             },
           }}
           sx={{
+            marginBottom: "16px",
             "& .MuiOutlinedInput-root": {
+              backgroundColor: "#16181c",
+              color: "#f5f5f5",
+              borderRadius: "25px",
               "& fieldset": { border: "none" },
             },
+            "& .MuiInputBase-input": { color: "#f5f5f5" },
+            "& .MuiOutlinedInput-notchedOutline": { borderColor: "#808080" },
           }}
         />
 
@@ -90,7 +82,7 @@ function Sidebar() {
           }}
         >
           {/* Danh sách người liên hệ gần đây */}
-          <Box sx={{}}>
+          <Box>
             <Typography
               variant="h6"
               sx={{
@@ -102,7 +94,7 @@ function Sidebar() {
               Người liên hệ gần đây
             </Typography>
             <List>
-              {contacts.map((contact, index) => (
+              {filteredContacts.map((contact, index) => (
                 <ListItem key={index} sx={{ padding: "8px 0" }}>
                   <ListItemAvatar>
                     <Avatar alt={contact.name} src={contact.avatar} />
@@ -119,6 +111,17 @@ function Sidebar() {
                 </ListItem>
               ))}
             </List>
+            {filteredContacts.length === 0 && (
+              <Typography
+                sx={{
+                  color: "#808080",
+                  textAlign: "center",
+                  marginTop: "16px",
+                }}
+              >
+                Không tìm thấy kết quả
+              </Typography>
+            )}
             <Box sx={{ marginTop: "8px" }}>
               <Link
                 href="#"
